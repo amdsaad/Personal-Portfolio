@@ -1,12 +1,12 @@
 <template>
   <header class="py-8">
-    <nav class="container flex justify-between">
+    <nav class="container flex justify-between flex-wrap">
       <div>
         <NuxtLink to="/" class="text-3xl font-bold text-[#4E2ADD]"
           >John Smith</NuxtLink
         >
       </div>
-      <ul class="flex items-center gap-8">
+      <ul class="flex items-center gap-8 flex-wrap">
         <li v-for="(link, index) in links" :key="index" class="font-semibold">
           <NuxtLink :to="link.url">{{ link.name }}</NuxtLink>
         </li>
