@@ -44,13 +44,21 @@
 </template>
 
 <script setup>
-const links = ref([
-  { name: "Home", url: "/" },
-  { name: "About", url: "/about" },
-  { name: "Services", url: "/services" },
-  { name: "Portfolio", url: "/portfolio" },
-  { name: "Contact", url: "/contact" },
-]);
+const links = ref(null);
+const { data: globalData, error: globalError } = await useFetch(
+  "http://localhost:1337/api/global?populate[0]=navigation"
+);
+
+if (globalData.value) {
+  links.value = globalData.value.data.attributes.navigation;
+}
+
+if (globalError.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Page Not Found",
+  });
+}
 </script>
 
 <style></style>
